@@ -36,6 +36,10 @@ public class RoomEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private CompanyEntity company;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

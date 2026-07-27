@@ -1,6 +1,6 @@
 package br.com.reservix.infrastructure.security;
 
-import br.com.reservix.infrastructure.persistence.repositories.JpaUserRepositoryAdapter;
+import br.com.reservix.infrastructure.persistence.repositories.JpaUserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
 
     private final TokenServiceAdapter tokenServiceAdapter;
-    private final JpaUserRepositoryAdapter jpaUserRepositoryAdapter;
+    private final JpaUserRepository jpaUserRepository;
 
 
 
@@ -34,7 +34,7 @@ public class SecurityFilter extends OncePerRequestFilter {
                 var subject = tokenServiceAdapter.getSubject(tokenJWT);
 
 
-                var usuarioOptional = jpaUserRepositoryAdapter.findById(Long.valueOf(subject));
+                var usuarioOptional = jpaUserRepository.findById(Long.valueOf(subject));
 
                 if (usuarioOptional.isPresent()) {
                     var usuario = usuarioOptional.get();

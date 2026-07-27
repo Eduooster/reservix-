@@ -1,7 +1,7 @@
 package br.com.reservix.infrastructure.security;
 
 import br.com.reservix.core.application.ports.out.TokenServiceGateway;
-import br.com.reservix.infrastructure.persistence.repositories.JpaUserRepositoryAdapter;
+import br.com.reservix.infrastructure.persistence.repositories.JpaUserRepository;
 import com.auth0.jwt.JWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +22,7 @@ public class TokenServiceAdapter implements TokenServiceGateway {
     @Value(value = "${api.security.token.secret}")
     private String secret;
 
-    private final JpaUserRepositoryAdapter jpaUserRepositoryAdapter;
+    private final JpaUserRepository jpaUserRepository;
 
 
 

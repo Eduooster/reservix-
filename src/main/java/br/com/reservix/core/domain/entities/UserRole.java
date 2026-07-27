@@ -2,6 +2,6 @@ package br.com.reservix.core.domain.entities;
 
 
 public enum UserRole {
-    ADMIN,
-    USER
+    ADMIN_COMPANY,
+    EMPLOYEE,
 }

@@ -44,6 +44,9 @@ public class ReservationEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(name = "cancelled_at")
+    private LocalDateTime cancelledAt;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

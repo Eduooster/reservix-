@@ -45,6 +45,10 @@ public class UserEntity implements UserDetails {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private CompanyEntity company;
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

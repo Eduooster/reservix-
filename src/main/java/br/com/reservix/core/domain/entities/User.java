@@ -2,6 +2,8 @@ package br.com.reservix.core.domain.entities;
 
 
 
+import br.com.reservix.core.domain.entities.company.Company;
+
 import java.time.LocalDateTime;
 
 public class User {
@@ -13,11 +15,12 @@ public class User {
     private boolean active;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Company company;
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, UserRole role, boolean active, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(Long id, String name, String email, String password, UserRole role, boolean active, LocalDateTime createdAt, LocalDateTime updatedAt, Company company) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -26,9 +29,80 @@ public class User {
         this.active = active;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.company = company;
     }
 
-    // Getters e Setters
+    public static User createCompanyAdmin(
+            Company company,
+            String name,
+            String email,
+            String password
+    ) {
+
+        User user = new User();
+
+        user.setCompany(company);
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        user.setRole(UserRole.ADMIN_COMPANY);
+        user.setActive(true);
+
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        return user;
+    }
+
+    public static User createCompanyEmployee(
+            Company company,
+            String name,
+            String email,
+            String password
+    ) {
+
+        User user = new User();
+
+        user.setCompany(company);
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        user.setRole(UserRole.EMPLOYEE);
+        user.setActive(true);
+
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        return user;
+    }
+
+    public static User create(
+            String name,
+            String email,
+            String password,
+            UserRole role,
+            Company company
+    ) {
+
+        User user = new User();
+
+        user.setCompany(company);
+        user.setName(name);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        user.setRole(role);
+        user.setActive(true);
+
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+
+        return user;
+    }
+
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -52,4 +126,12 @@ public class User {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }

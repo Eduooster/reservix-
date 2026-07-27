@@ -34,7 +34,8 @@ public class SecurityConfigMvc {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/h2-console/**",
-                                "/login", "/register","/index.html"
+                                "/login", "/register","/index.html","/companies",
+                                "/invitations/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
